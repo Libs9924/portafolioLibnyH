@@ -1,5 +1,6 @@
 package com.tienda.tienda.service.impl;
 
+import org.springframework.stereotype.Service;
 import com.tienda.tienda.dao.CategoriaDao;
 import com.tienda.tienda.domain.Categoria;
 import com.tienda.tienda.service.CategoriaService;
@@ -27,7 +28,7 @@ public class CategoriaServiceImpl implements CategoriaService {
     @Override
     @Transactional(readOnly = true)
     public Categoria getCategoria(Categoria categoria) {
-        return categoriaDao.findById(categoria.getIdCategoria()).orElse(null));
+        return categoriaDao.findById(categoria.getIdCategoria()).orElse(null);
     }
     
     @Override
@@ -41,4 +42,9 @@ public class CategoriaServiceImpl implements CategoriaService {
     public void delete(Categoria categoria) {
         categoriaDao.delete(categoria);
     }
-} 
+
+    @Override
+    public Categoria getCategoriaPorId(Long idCategoria) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+}

@@ -9,7 +9,7 @@ import com.google.cloud.storage.BlobInfo;
 import com.google.cloud.storage.Storage;
 import com.google.cloud.storage.Storage.SignUrlOption;
 import com.google.cloud.storage.StorageOptions;
-import com.tienda.service.FirebaseStorageService;
+import com.tienda.tienda.service.FirebaseStorageService;
 import com.tienda.tienda.service.FirebaseStorageService;
 import java.io.File;
 import java.io.FileOutputStream;
@@ -63,16 +63,16 @@ public class FirebaseStorageServiceImpl implements FirebaseStorageService {
                 .setCredentials(credentials).build().getService();
         storage.create(blobInfo, Files.readAllBytes(file.toPath()));
         String url = storage.signUrl(blobInfo,
-                1:3650,
+                3650,
                 TimeUnit.DAYS,
-                SignUrlOptions.signWith((ServiceAccountSigner) credentials))
+                SignUrlOption.signWith((ServiceAccountSigner) credentials))
                 .toString();
                 return url;
     }
     
     //Método utilitario que convierte el archivo desde el equipo local
     //del usuario a un archivo temporal en el servidor 
-    private File convertToFile(MultipartFile archivoLocalCliente) throwa IOException {
+    private File convertToFile(MultipartFile archivoLocalCliente) throws IOException {
         File tempFile = File.createTempFile("img",null);
         try (FileOutputStream fos = new FileOutputStream(tempFile)) {
             fos.write(archivoLocalCliente.getBytes());
